@@ -1,4 +1,4 @@
-import { initializeApp, database, auth, storage } from 'firebase'
+import * as firebase from 'firebase'
 import {
   FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN,
@@ -18,9 +18,9 @@ const config = {
   messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
 };
 
-initializeApp(config)
+firebase.initializeApp(config)
 
-export const database = database()
-export const auth = auth()
-export const provider = new auth.FacebookAuthProvider()
-export const storage = storage()
+export const database = firebase.database()
+export const auth = firebase.auth()
+export const provider = new firebase.auth.FacebookAuthProvider()
+export const storage = firebase.storage()
