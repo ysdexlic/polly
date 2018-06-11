@@ -16,7 +16,14 @@ const styles = StyleSheet.create({
         paddingBottom: padding * 2,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor: '#FF553F',
+        // backgroundColor: '#FF553F',
+    },
+
+    videoMask: {
+        ...StyleSheet.absoluteFillObject,
+        flex: 1,
+        backgroundColor: '#000',
+        opacity: 0.6,
     },
 
     image:{

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createStackNavigator } from 'react-navigation'
-import { View, Text } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 import WelcomeScreen from './modules/auth/scenes/Welcome'
 import LoginScreen from './modules/auth/scenes/Login'
@@ -38,10 +38,14 @@ export const Navigation = createStackNavigator({
 
 export class Main extends Component {
     render() {
-        if (!this.props.isLoggedIn) {
-            return <UnAuthNavigation />
-        }
-        return <Navigation />
+        return (
+            <View style={styles.container}>
+                {this.props.isLoggedIn
+                    ? <Navigation />
+                    : <UnAuthNavigation />
+                }
+            </View>
+        )
     }
 }
 
@@ -50,3 +54,9 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(Main)
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+})

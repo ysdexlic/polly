@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, Image } from 'react-native'
+import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { Video } from 'expo'
+
+import Bee from './Bee.mp4'
 
 import { Button, SocialIcon, Divider } from 'react-native-elements'
 import { connect } from 'react-redux'
@@ -38,6 +41,17 @@ class Welcome extends Component {
     render() {
         return (
             <View style={styles.container}>
+
+                <Video
+                    shouldPlay
+                    isLooping
+                    source={Bee}
+                    resizeMode="cover"
+                    style={StyleSheet.absoluteFill}
+                />
+
+                <View style={styles.videoMask}></View>
+
                 <View style={styles.topContainer}>
                     <Image style={styles.image} source={{uri: 'https://thebeardydeveloper.com/me.png'}}/>
                     <Text style={styles.title}>David Thompson</Text>
