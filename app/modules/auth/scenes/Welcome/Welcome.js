@@ -13,6 +13,7 @@ import styles from './styles'
 class Welcome extends Component {
     static navigationOptions = {
         header: null,
+        headerBackTitle: 'Back',
     }
 
     constructor() {
@@ -26,10 +27,12 @@ class Welcome extends Component {
 
     register = () => {
         console.log('registering')
+        this.props.navigation.push('Register')
     }
 
     login = () => {
         console.log('logging in')
+        this.props.navigation.push('Login')
     }
 
     render() {

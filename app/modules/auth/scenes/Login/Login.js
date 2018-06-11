@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import { actions as authActions } from '../../index'
-const { register } = authActions
 
 import Form from '../../components/Form'
+
+const { login } = authActions
 
 const fields = [
     {
@@ -17,15 +18,6 @@ const fields = [
         type: 'email'
     },
     {
-        key: 'username',
-        label: 'Username',
-        placeholder: 'Username',
-        autoFocus: false,
-        secureTextEntry: false,
-        value: '',
-        type: 'text'
-    },
-    {
         key: 'password',
         label: 'Password',
         placeholder: 'Password',
@@ -33,26 +25,20 @@ const fields = [
         secureTextEntry: true,
         value: '',
         type: 'password'
-    },
-    {
-        key: 'confirm_password',
-        label: 'Confirm Password',
-        placeholder: 'Confirm Password',
-        autoFocus: false,
-        secureTextEntry: true,
-        value: '',
-        type: 'confirm_password'
     }
 ]
 
 const error = {
     general: '',
     email: '',
-    password: '',
-    confirm_password: ''
+    password: ''
 }
 
-class Register extends Component {
+class Login extends React.Component {
+    static navigationOptions = {
+        title: 'Log In'
+    }
+
     constructor() {
         super()
         this.state = {
@@ -60,14 +46,19 @@ class Register extends Component {
         }
     }
 
+    onForgotPassword() {
+        this.props.dispatch({type: 'FORGOT_PASSWORD'})
+    }
+
     onSubmit = (data) => {
         this.setState({error: error}) //clear out error messages
 
-        this.props.register(data, this.onSuccess, this.onError)
+        this.props.login(data, this.onSuccess, this.onError)
     }
 
-    onSuccess = (user) => {
-        this.props.dispatch({type: 'AUTHENTICATEDDDDD'})
+    onSuccess = ({exists, user}) => {
+        if (exists) this.props.dispatch({type: 'AUTHENTICATEDDDDD'})
+        else this.props.dispatch({type: 'SIGNED_URPPP', payload: user})
     }
 
     onError = (error) => {
@@ -86,20 +77,19 @@ class Register extends Component {
 
     render() {
         return (
-            <Form
-                fields={fields}
-                showLabel={false}
-                onSubmit={this.onSubmit}
-                buttonTitle={'SIGN UP'}
-                error={this.state.error}
-            />
+            <Form fields={fields}
+                  showLabel={false}
+                  onSubmit={this.onSubmit}
+                  buttonTitle={'LOG IN'}
+                  error={this.state.error}
+                  onForgotPassword={this.onForgotPassword}/>
         )
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     dispatch,
-    register
+    login
 })
 
-export default connect(null, mapDispatchToProps)(Register)
+export default connect(null, mapDispatchToProps)(Login)
