@@ -6,6 +6,8 @@ import { View, Text } from 'react-native'
 import WelcomeScreen from './modules/auth/scenes/Welcome'
 import LoginScreen from './modules/auth/scenes/Login'
 import RegisterScreen from './modules/auth/scenes/Register'
+import ForgotPassword from './modules/auth/scenes/ForgotPassword'
+import CompleteProfile from './modules/auth/scenes/CompleteProfile'
 
 import HomeScreen from './modules/home/scenes/Home'
 
@@ -19,6 +21,12 @@ export const UnAuthNavigation = createStackNavigator({
     },
     Register: {
         screen: RegisterScreen,
+    },
+    ForgotPassword: {
+        screen: ForgotPassword,
+    },
+    CompleteProfile: {
+        screen: CompleteProfile,
     }
 })
 

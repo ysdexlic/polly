@@ -62,7 +62,6 @@ class Register extends Component {
 
     onSubmit = (data) => {
         this.setState({error: error}) //clear out error messages
-
         this.props.register(data, this.onSuccess, this.onError)
     }
 

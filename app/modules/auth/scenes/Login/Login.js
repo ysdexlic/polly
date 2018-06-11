@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { actions as authActions } from '../../index'
@@ -34,7 +34,7 @@ const error = {
     password: ''
 }
 
-class Login extends React.Component {
+class Login extends Component {
     static navigationOptions = {
         title: 'Log In'
     }
@@ -46,13 +46,13 @@ class Login extends React.Component {
         }
     }
 
-    onForgotPassword() {
+    onForgotPassword = () => {
         this.props.dispatch({type: 'FORGOT_PASSWORD'})
+        this.props.navigation.push('ForgotPassword')
     }
 
     onSubmit = (data) => {
         this.setState({error: error}) //clear out error messages
-
         this.props.login(data, this.onSuccess, this.onError)
     }
 
@@ -89,7 +89,7 @@ class Login extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
     dispatch,
-    login
+    // login
 })
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect()(Login)
