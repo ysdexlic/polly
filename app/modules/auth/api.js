@@ -1,7 +1,7 @@
 import { auth, database, provider } from '../../config/firebase'
 
 //Register the user using email and password
-export function register(data, callback) {
+export const register = (data, callback) => {
     const { email, password, username } = data
     auth.createUserWithEmailAndPassword(email, password)
         .then((resp) => createUser({ username, uid:resp.user.uid }, callback))
@@ -9,7 +9,7 @@ export function register(data, callback) {
 }
 
 //Create the user object in realtime database
-export function createUser (user, callback) {
+export const createUser = (user, callback) => {
     const userRef = database.ref().child('users')
 
     userRef.child(user.uid).update({ ...user })
@@ -18,7 +18,7 @@ export function createUser (user, callback) {
 }
 
 //Sign the user in with their email and password
-export function login(data, callback) {
+export const login = (data, callback) => {
     const { email, password } = data
     auth.signInWithEmailAndPassword(email, password)
         .then((resp) => getUser(resp.user, callback))
@@ -26,9 +26,9 @@ export function login(data, callback) {
 }
 
 //Get the user object from the realtime database
-export function getUser(user, callback) {
+export const getUser = (user, callback) => {
     database.ref('users').child(user.uid).once('value')
-        .then(function(snapshot) {
+        .then((snapshot) => {
 
             const exists = (snapshot.val() !== null)
 
@@ -42,14 +42,14 @@ export function getUser(user, callback) {
 }
 
 //Send Password Reset Email
-export function resetPassword(data, callback) {
+export const resetPassword = (data, callback) => {
     const { email } = data
     auth.sendPasswordResetEmail(email)
         .then((user) => callback(true, null, null))
         .catch((error) => callback(false, null, error))
 }
 
-export function signOut (callback) {
+export const signOut = (callback) => {
     auth.signOut()
         .then(() => {
             if (callback) callback(true, null, null)
@@ -59,9 +59,8 @@ export function signOut (callback) {
         })
 }
 
-
 //Sign user in using Facebook
-export function signInWithFacebook (fbToken, callback) {
+export const signInWithFacebook = (fbToken, callback) => {
     const credential = provider.credential(fbToken)
     auth.signInWithCredential(credential)
         .then((user) => getUser(user, callback))

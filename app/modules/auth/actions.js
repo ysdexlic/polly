@@ -2,9 +2,9 @@ import { LOGGED_IN, LOGGED_OUT } from './actionTypes'
 import * as api from './api'
 import { auth } from "../../config/firebase"
 
-export function register(data, successCB, errorCB) {
+export const register = (data, successCB, errorCB) => {
     return (dispatch) => {
-        api.register(data, function (success, data, error) {
+        api.register(data, (success, data, error) => {
             if (success) {
                 dispatch({type: LOGGED_IN, data})
                 successCB(data)
@@ -14,9 +14,9 @@ export function register(data, successCB, errorCB) {
     }
 }
 
-export function createUser(user, successCB, errorCB) {
+export const createUser = (user, successCB, errorCB) => {
     return (dispatch) => {
-        api.createUser(user, function (success, data, error) {
+        api.createUser(user, (success, data, error) => {
             if (success) {
                 dispatch({type: LOGGED_IN, data: user})
                 successCB()
@@ -25,9 +25,9 @@ export function createUser(user, successCB, errorCB) {
     }
 }
 
-export function login(data, successCB, errorCB) {
+export const login = (data, successCB, errorCB) => {
     return (dispatch) => {
-        api.login(data, function (success, data, error) {
+        api.login(data, (success, data, error) => {
             if (success) {
                 if (data.exists) dispatch({type: LOGGED_IN, data: data.user})
                 successCB(data)
@@ -36,18 +36,18 @@ export function login(data, successCB, errorCB) {
     }
 }
 
-export function resetPassword(data, successCB, errorCB) {
+export const resetPassword = (data, successCB, errorCB) => {
     return (dispatch) => {
-        api.resetPassword(data, function (success, data, error) {
+        api.resetPassword(data, (success, data, error) => {
             if (success) successCB()
             else if (error) errorCB(error)
         })
     }
 }
 
-export function signOut(successCB, errorCB) {
+export const signOut = (successCB, errorCB) => {
     return (dispatch) => {
-        api.signOut(function (success, data, error) {
+        api.signOut((success, data, error) => {
             if (success) {
                 dispatch({type: LOGGED_OUT})
                 successCB()
@@ -56,17 +56,17 @@ export function signOut(successCB, errorCB) {
     }
 }
 
-export function checkLoginStatus(callback) {
+export const checkLoginStatus = (callback) => {
     return (dispatch) => {
         auth.onAuthStateChanged((user) => {
             let isLoggedIn = (user !== null)
 
             if (isLoggedIn){
-                api.getUser(user, function (success, { exists, user }, error) {
+                api.getUser(user, (success, { exists, user }, error) => {
                     if (success) {
                         if (exists) dispatch({type: LOGGED_IN, data: user})
                         callback(exists, isLoggedIn)
-                    }else if (error) {
+                    } else if (error) {
                         //unable to get user
                         dispatch({type: LOGGED_OUT})
                         callback(false, false)
@@ -80,9 +80,9 @@ export function checkLoginStatus(callback) {
     }
 }
 
-export function signInWithFacebook(facebookToken, successCB, errorCB) {
+export const signInWithFacebook = (facebookToken, successCB, errorCB) => {
     return (dispatch) => {
-        api.signInWithFacebook(facebookToken, function (success, data, error) {
+        api.signInWithFacebook(facebookToken, (success, data, error) => {
             if (success) {
                 if (data.exists) dispatch({type: LOGGED_IN, data: data.user})
                 successCB(data)

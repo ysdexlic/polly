@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native'
-import { Video } from 'expo'
+import { Video, Facebook } from 'expo'
 
 import Bee from './Bee.mp4'
 
 import { Button, SocialIcon, Divider } from 'react-native-elements'
 import { connect } from 'react-redux'
 
-import { actions as auth } from '../../index'
+import { actions as authActions, constants as authConstants  } from '../../index'
 
-const {} = auth
+const { signInWithFacebook } = authActions
+const { FACEBOOK_APP_ID } = authConstants
 
 import styles from './styles'
 
@@ -24,17 +25,29 @@ class Welcome extends Component {
         this.state = {}
     }
 
-    onSignInWithFacebook = () => {
-        console.log('logging in with facebook')
+    onSignInWithFacebook = async () => {
+        const options = { permissions: ['public_profile', 'email'] }
+        const { type, token } = await Facebook.logInWithReadPermissionsAsync(FACEBOOK_APP_ID, options)
+
+        if (type === 'success') {
+            this.props.signInWithFacebook(token, this.onSuccess, this.onError)
+        }
     }
 
+    onSuccess = ({ exists, user}) => {
+        if (exists) console.log('user already exists')
+        else {
+            this.props.dispatch({type: 'SET_USER', payload: user})
+            this.props.navigation.push('CompleteProfile')
+        }
+    }
+
+
     register = () => {
-        console.log('registering')
         this.props.navigation.push('Register')
     }
 
     login = () => {
-        console.log('logging in')
         this.props.navigation.push('Login')
     }
 
