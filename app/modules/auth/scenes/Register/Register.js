@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import { actions as authActions } from '../../index'
 const { register } = authActions
@@ -13,7 +14,7 @@ const fields = [
         placeholder: 'Email Address',
         autoFocus: false,
         secureTextEntry: false,
-        value: '',
+        value: 'david.arthur.thompson@gmail.com',
         type: 'email'
     },
     {
@@ -22,7 +23,7 @@ const fields = [
         placeholder: 'Username',
         autoFocus: false,
         secureTextEntry: false,
-        value: '',
+        value: 'ysdexlic',
         type: 'text'
     },
     {
@@ -31,7 +32,7 @@ const fields = [
         placeholder: 'Password',
         autoFocus: false,
         secureTextEntry: true,
-        value: '',
+        value: 'Password123',
         type: 'password'
     },
     {
@@ -40,7 +41,7 @@ const fields = [
         placeholder: 'Confirm Password',
         autoFocus: false,
         secureTextEntry: true,
-        value: '',
+        value: 'Password123',
         type: 'confirm_password'
     }
 ]
@@ -61,7 +62,7 @@ class Register extends Component {
     }
 
     onSubmit = (data) => {
-        this.setState({error: error}) //clear out error messages
+        this.setState({error}) //clear out error messages
         this.props.register(data, this.onSuccess, this.onError)
     }
 
@@ -98,7 +99,7 @@ class Register extends Component {
 
 const mapDispatchToProps = dispatch => ({
     dispatch,
-    register
+    register: bindActionCreators(register, dispatch),
 })
 
 export default connect(null, mapDispatchToProps)(Register)

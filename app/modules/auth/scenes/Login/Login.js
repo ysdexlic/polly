@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import { actions as authActions } from '../../index'
 
@@ -89,7 +90,7 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => ({
     dispatch,
-    // login
+    login: bindActionCreators(login, dispatch),
 })
 
-export default connect()(Login)
+export default connect(null, mapDispatchToProps)(Login)

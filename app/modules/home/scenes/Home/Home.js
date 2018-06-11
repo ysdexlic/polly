@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { View, StyleSheet, Alert } from 'react-native'
 
 import { Button } from 'react-native-elements'
@@ -49,7 +50,7 @@ export class Home extends Component {
 
 const mapDispatchToProps = dispatch => ({
     dispatch,
-    signOut
+    signOut: bindActionCreators(signOut, dispatch),
 })
 
 export default connect(null, mapDispatchToProps)(Home)

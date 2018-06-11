@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import { actions as authActions } from '../../index'
 const { resetPassword } = authActions
@@ -73,7 +74,7 @@ class ForgotPassword extends Component {
 
 const mapDispatchToProps = dispatch => ({
     dispatch,
-    resetPassword
+    resetPassword: bindActionCreators(resetPassword, dispatch),
 })
 
 export default connect(null, mapDispatchToProps)(ForgotPassword)

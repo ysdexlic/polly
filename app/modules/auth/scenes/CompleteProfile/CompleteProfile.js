@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import { actions as authActions } from '../../index'
 const { createUser } = authActions
@@ -29,13 +30,9 @@ class CompleteProfile extends Component {
         this.state = {
             error: error
         }
-
-        this.onSubmit = this.onSubmit.bind(this)
-        this.onSuccess = this.onSuccess.bind(this)
-        this.onError = this.onError.bind(this)
     }
 
-    onSubmit(data) {
+    onSubmit = (data) => {
         this.setState({error: error}) //clear out error messages
 
         //attach user id
@@ -45,11 +42,11 @@ class CompleteProfile extends Component {
         this.props.createUser(data, this.onSuccess, this.onError)
     }
 
-    onSuccess() {
+    onSuccess = () => {
         this.props.dispatch({type: 'AUTHENTICATEDDDDD'})
     }
 
-    onError(error) {
+    onError = (error) => {
         let errObj = this.state.error
 
         if (error.hasOwnProperty('message')) {
@@ -66,18 +63,18 @@ class CompleteProfile extends Component {
 
     render() {
         return (
-                <Form fields={fields}
-                      showLabel={false}
-                      onSubmit={this.onSubmit}
-                      buttonTitle={'CONTINUE'}
-                      error={this.state.error}/>
+            <Form fields={fields}
+                  showLabel={false}
+                  onSubmit={this.onSubmit}
+                  buttonTitle={'CONTINUE'}
+                  error={this.state.error}/>
         )
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     dispatch,
-    createUser
+    createUser: bindActionCreators(createUser, dispatch)
 })
 
 export default connect(null, mapDispatchToProps)(CompleteProfile)

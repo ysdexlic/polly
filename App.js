@@ -10,7 +10,7 @@ import { checkLoginStatus } from "./app/modules/auth/actions"
 import Main from './app/main'
 
 const cacheFonts = (fonts) => {
-    return fonts.map(font => Font.loadAsync(font));
+    return fonts.map(font => Font.loadAsync(font))
 }
 
 export default class App extends Component {
@@ -38,9 +38,8 @@ export default class App extends Component {
             {RobotoMedium: require('./app/assets/fonts/Roboto/Roboto-Medium.ttf')},
             {RobotoRegular: require('./app/assets/fonts/Roboto/Roboto-Regular.ttf')},
             {RobotoLight: require('./app/assets/fonts/Roboto/Roboto-Light.ttf')}
-        ]);
-
-        await Promise.all([...fontAssets]);
+        ])
+        await Promise.all([...fontAssets])
     }
 
     render() {
@@ -56,7 +55,7 @@ export default class App extends Component {
 
         return (
             <Provider store={store}>
-                <Main isReady={this.state.isReady}/>
+                <Main isReady={this.state.isReady} />
             </Provider>
         )
     }
