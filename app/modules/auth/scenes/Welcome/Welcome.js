@@ -11,9 +11,17 @@ const {} = auth
 import styles from './styles'
 
 class Welcome extends Component {
+    static navigationOptions = {
+        header: null,
+    }
+
     constructor() {
         super()
         this.state = {}
+    }
+
+    onSignInWithFacebook = () => {
+        console.log('logging in with facebook')
     }
 
     register = () => {
@@ -47,7 +55,7 @@ class Welcome extends Component {
                         <View style={styles.orContainer}>
                             <Divider style={styles.divider}/>
                             <Text style={styles.orText}>
-                                Or
+                                or
                             </Text>
                         </View>
 
@@ -78,5 +86,8 @@ class Welcome extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    auth: state.auth
+})
 
-export default Welcome
+export default connect(mapStateToProps)(Welcome)
