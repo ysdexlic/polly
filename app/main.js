@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { createStackNavigator } from 'react-navigation'
 import { View, StyleSheet } from 'react-native'
 
+import Splash from './components/Splash'
+
 import WelcomeScreen from './modules/auth/scenes/Welcome'
 import LoginScreen from './modules/auth/scenes/Login'
 import RegisterScreen from './modules/auth/scenes/Register'
@@ -14,7 +16,6 @@ import HomeScreen from './modules/home/scenes/Home'
 export const UnAuthNavigation = createStackNavigator({
     Welcome: {
         screen: WelcomeScreen,
-
     },
     Login: {
         screen: LoginScreen,
@@ -38,6 +39,10 @@ export const Navigation = createStackNavigator({
 
 export class Main extends Component {
     render() {
+
+        if (!this.props.isReady)
+            return <Splash/>
+
         return (
             <View style={styles.container}>
                 {this.props.isLoggedIn

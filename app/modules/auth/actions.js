@@ -2,8 +2,6 @@ import { LOGGED_IN, LOGGED_OUT } from './actionTypes'
 import * as api from './api'
 import { auth } from "../../config/firebase"
 
-import { AsyncStorage } from 'react-native'
-
 export function register(data, successCB, errorCB) {
     return (dispatch) => {
         api.register(data, function (success, data, error) {
@@ -22,7 +20,7 @@ export function createUser(user, successCB, errorCB) {
             if (success) {
                 dispatch({type: LOGGED_IN, data: user})
                 successCB()
-            }else if (error) errorCB(error)
+            } else if (error) errorCB(error)
         })
     }
 }
@@ -33,7 +31,7 @@ export function login(data, successCB, errorCB) {
             if (success) {
                 if (data.exists) dispatch({type: LOGGED_IN, data: data.user})
                 successCB(data)
-            }else if (error) errorCB(error)
+            } else if (error) errorCB(error)
         })
     }
 }
@@ -53,7 +51,7 @@ export function signOut(successCB, errorCB) {
             if (success) {
                 dispatch({type: LOGGED_OUT})
                 successCB()
-            }else if (error) errorCB(error)
+            } else if (error) errorCB(error)
         })
     }
 }
@@ -74,7 +72,7 @@ export function checkLoginStatus(callback) {
                         callback(false, false)
                     }
                 })
-            }else {
+            } else {
                 dispatch({type: LOGGED_OUT})
                 callback(false, isLoggedIn)
             }
