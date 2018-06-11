@@ -96,7 +96,6 @@ class Form extends React.Component {
                     <Button
                         raised
                         title={buttonTitle}
-                        borderRadius={0}
                         containerViewStyle={styles.containerView}
                         buttonStyle={styles.button}
                         textStyle={styles.buttonText}

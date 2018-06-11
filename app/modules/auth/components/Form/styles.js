@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     },
 
     button:{
+        borderRadius: 4,
         backgroundColor: '#FF553F',
         height: normalize(55)
     },

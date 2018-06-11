@@ -53,8 +53,7 @@ class Welcome extends Component {
                 <View style={styles.videoMask}></View>
 
                 <View style={styles.topContainer}>
-                    <Image style={styles.image} source={{uri: 'https://thebeardydeveloper.com/me.png'}}/>
-                    <Text style={styles.title}>David Thompson</Text>
+                    <Text style={styles.title}>App Name</Text>
                 </View>
 
                 <View style={styles.bottomContainer}>
@@ -78,7 +77,6 @@ class Welcome extends Component {
 
                         <Button
                             raised
-                            borderRadius={4}
                             title={'SIGN UP WITH E-MAIL'}
                             containerViewStyle={[styles.containerView]}
                             buttonStyle={[styles.button]}

@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
         paddingBottom: padding * 2,
         justifyContent:'center',
         alignItems:'center',
-        // backgroundColor: '#FF553F',
     },
 
     videoMask: {
@@ -80,6 +79,7 @@ const styles = StyleSheet.create({
     },
 
     button:{
+        borderRadius: 4,
         backgroundColor: '#FF553F',
         height: normalize(55)
     },
