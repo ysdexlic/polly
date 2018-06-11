@@ -14,7 +14,7 @@ const fields = [
         placeholder: 'Email Address',
         autoFocus: false,
         secureTextEntry: false,
-        value: 'david.arthur.thompson@gmail.com',
+        value: '',
         type: 'email'
     },
     {
@@ -23,7 +23,7 @@ const fields = [
         placeholder: 'Username',
         autoFocus: false,
         secureTextEntry: false,
-        value: 'ysdexlic',
+        value: '',
         type: 'text'
     },
     {
@@ -32,7 +32,7 @@ const fields = [
         placeholder: 'Password',
         autoFocus: false,
         secureTextEntry: true,
-        value: 'Password123',
+        value: '',
         type: 'password'
     },
     {
@@ -41,7 +41,7 @@ const fields = [
         placeholder: 'Confirm Password',
         autoFocus: false,
         secureTextEntry: true,
-        value: 'Password123',
+        value: '',
         type: 'confirm_password'
     }
 ]
