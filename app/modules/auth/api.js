@@ -62,7 +62,10 @@ export const signOut = (callback) => {
 //Sign user in using Facebook
 export const signInWithFacebook = (fbToken, callback) => {
     const credential = provider.credential(fbToken)
-    auth.signInWithCredential(credential)
+    auth.signInAndRetrieveDataWithCredential(credential)
         .then((user) => getUser(user, callback))
-        .catch((error) => callback(false, null, error))
+        .catch((error) => {
+            console.error(error)
+            callback(false, null, error)
+        })
 }

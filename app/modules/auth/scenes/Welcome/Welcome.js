@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { Button, SocialIcon, Divider } from 'react-native-elements'
 import { Video, Facebook } from 'expo'
 
 import Bee from './Bee.mp4'
-
-import { Button, SocialIcon, Divider } from 'react-native-elements'
-import { connect } from 'react-redux'
 
 import { actions as authActions, constants as authConstants  } from '../../index'
 
@@ -42,6 +42,9 @@ class Welcome extends Component {
         }
     }
 
+    onError = (error) => {
+        alert(error.message);
+    }
 
     register = () => {
         this.props.navigation.push('Register')
@@ -118,4 +121,9 @@ const mapStateToProps = state => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps)(Welcome)
+const mapDispatchToProps = dispatch => ({
+    dispatch,
+    signInWithFacebook: bindActionCreators(signInWithFacebook, dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome)

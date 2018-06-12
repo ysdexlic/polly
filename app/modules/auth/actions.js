@@ -6,7 +6,7 @@ export const register = (data, successCB, errorCB) => {
     return (dispatch) => {
         api.register(data, (success, data, error) => {
             if (success) {
-                dispatch({type: LOGGED_IN, data})
+                dispatch({type: LOGGED_IN, payload: data})
                 successCB(data)
             }
             else if (error) errorCB(error)
@@ -18,7 +18,7 @@ export const createUser = (user, successCB, errorCB) => {
     return (dispatch) => {
         api.createUser(user, (success, data, error) => {
             if (success) {
-                dispatch({type: LOGGED_IN, data: user})
+                dispatch({type: LOGGED_IN, payload: user})
                 successCB()
             } else if (error) errorCB(error)
         })
@@ -29,7 +29,7 @@ export const login = (data, successCB, errorCB) => {
     return (dispatch) => {
         api.login(data, (success, data, error) => {
             if (success) {
-                if (data.exists) dispatch({type: LOGGED_IN, data: data.user})
+                if (data.exists) dispatch({type: LOGGED_IN, payload: data.user})
                 successCB(data)
             } else if (error) errorCB(error)
         })
@@ -64,7 +64,7 @@ export const checkLoginStatus = (callback) => {
             if (isLoggedIn){
                 api.getUser(user, (success, { exists, user }, error) => {
                     if (success) {
-                        if (exists) dispatch({type: LOGGED_IN, data: user})
+                        if (exists) dispatch({type: LOGGED_IN, payload: user})
                         callback(exists, isLoggedIn)
                     } else if (error) {
                         //unable to get user
@@ -84,7 +84,7 @@ export const signInWithFacebook = (facebookToken, successCB, errorCB) => {
     return (dispatch) => {
         api.signInWithFacebook(facebookToken, (success, data, error) => {
             if (success) {
-                if (data.exists) dispatch({type: LOGGED_IN, data: data.user})
+                if (data.exists) dispatch({type: LOGGED_IN, payload: data.user})
                 successCB(data)
             } else if (error) errorCB(error)
         })

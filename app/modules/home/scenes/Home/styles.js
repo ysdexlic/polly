@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
         }
     },
 
+    button: {
+        marginVertical: 10,
+    },
+
     buttonContainer:{
         justifyContent:"center",
         alignItems:"center"
