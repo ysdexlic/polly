@@ -35,6 +35,8 @@ export const Navigation = createStackNavigator({
     Home: {
         screen: HomeScreen
     }
+}, {
+    headerMode: 'none',
 })
 
 export class Main extends Component {

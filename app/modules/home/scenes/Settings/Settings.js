@@ -3,9 +3,10 @@ import { View, Text } from 'react-native'
 import { Button } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
-export class Search extends Component {
+export class Settings extends Component {
     static navigationOptions = ({ navigation }) => ({
-        headerLeft: (
+        headerLeft: null,
+        headerRight: (
             <Button
                 onPress={() => navigation.goBack()}
                 title="Profile"
@@ -16,10 +17,10 @@ export class Search extends Component {
     render() {
         return (
             <View>
-                <Text>Search</Text>
+                <Text>Settings</Text>
             </View>
         )
     }
 }
 
-export default Search
+export default Settings

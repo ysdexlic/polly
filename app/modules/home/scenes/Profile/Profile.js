@@ -14,10 +14,20 @@ const { uploadProfileImage } = homeActions
 import styles from "./styles"
 
 export class Profile extends Component {
-    static navigationOptions = {
-        title: 'Profile',
-        tabBarIcon: ({ focused, tintColor }) => <Ionicons name={`ios-home${focused ? '' : '-outline'}`} size={25} color={tintColor} />,
-    }
+    static navigationOptions = ({ navigation }) => ({
+        headerLeft: (
+            <Button
+                onPress={() => navigation.push('Settings')}
+                title="Settings"
+            />
+        ),
+        headerRight: (
+            <Button
+                onPress={() => navigation.push('Search')}
+                title="Search"
+            />
+        ),
+    })
 
     constructor(){
         super()
