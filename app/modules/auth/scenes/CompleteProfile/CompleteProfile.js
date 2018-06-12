@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import { actionTypes } from '../../index'
+const { LOGGED_IN } = actionTypes
 import { actions as authActions } from '../../index'
 const { createUser } = authActions
 
@@ -25,6 +27,10 @@ const error = {
 }
 
 class CompleteProfile extends Component {
+    static navigationOptions = {
+        headerLeft: null
+    }
+
     constructor() {
         super()
         this.state = {
@@ -43,7 +49,7 @@ class CompleteProfile extends Component {
     }
 
     onSuccess = () => {
-        this.props.dispatch({type: 'AUTHENTICATEDDDDD'})
+        this.props.dispatch({type: LOGGED_IN, payload: this.props.user})
     }
 
     onError = (error) => {
@@ -72,9 +78,13 @@ class CompleteProfile extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    user: state.auth.user,
+})
+
 const mapDispatchToProps = dispatch => ({
     dispatch,
     createUser: bindActionCreators(createUser, dispatch)
 })
 
-export default connect(null, mapDispatchToProps)(CompleteProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(CompleteProfile)

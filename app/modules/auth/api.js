@@ -1,4 +1,4 @@
-import { auth, database, provider } from '../../config/firebase'
+import { auth, database, provider, provider2 } from '../../config/firebase'
 
 //Register the user using email and password
 export const register = (data, callback) => {
@@ -29,6 +29,8 @@ export const login = (data, callback) => {
 export const getUser = (user, callback) => {
     database.ref('users').child(user.uid).once('value')
         .then((snapshot) => {
+
+            console.log(snapshot)
 
             const exists = (snapshot.val() !== null)
 
@@ -61,9 +63,12 @@ export const signOut = (callback) => {
 
 //Sign user in using Facebook
 export const signInWithFacebook = (fbToken, callback) => {
-    const credential = provider.credential(fbToken)
+    const credential = provider2.credential(fbToken)
     auth.signInAndRetrieveDataWithCredential(credential)
-        .then((user) => getUser(user, callback))
+        .then((user) => {
+            console.log(user)
+            getUser(user.user, callback)
+        })
         .catch((error) => {
             console.error(error)
             callback(false, null, error)

@@ -35,9 +35,11 @@ class Welcome extends Component {
     }
 
     onSuccess = ({ exists, user}) => {
-        if (exists) console.log('user already exists')
+        if (exists) {
+            console.log('user already exists')
+            this.props.navigation.push('Home')
+        }
         else {
-            this.props.dispatch({type: 'SET_USER', payload: user})
             this.props.navigation.push('CompleteProfile')
         }
     }

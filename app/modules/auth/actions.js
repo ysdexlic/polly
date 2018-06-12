@@ -1,4 +1,4 @@
-import { LOGGED_IN, LOGGED_OUT } from './actionTypes'
+import { LOGGED_IN, LOGGED_OUT, SET_USER } from './actionTypes'
 import * as api from './api'
 import { auth } from "../../config/firebase"
 
@@ -84,6 +84,8 @@ export const signInWithFacebook = (facebookToken, successCB, errorCB) => {
     return (dispatch) => {
         api.signInWithFacebook(facebookToken, (success, data, error) => {
             if (success) {
+                console.log(data)
+                dispatch({type: SET_USER, payload: data.user})
                 if (data.exists) dispatch({type: LOGGED_IN, payload: data.user})
                 successCB(data)
             } else if (error) errorCB(error)

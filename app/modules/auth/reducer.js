@@ -1,11 +1,14 @@
 import { AsyncStorage } from 'react-native'
 
-import { LOGGED_IN, LOGGED_OUT } from './actionTypes'
+import { LOGGED_IN, LOGGED_OUT, SET_USER } from './actionTypes'
 
 let initialState = { isLoggedIn: false, user: null }
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_USER:
+            return {...state, user: action.payload }
+
         case LOGGED_IN:
             const user = action.payload
 
