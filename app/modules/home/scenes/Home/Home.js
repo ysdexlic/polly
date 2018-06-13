@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Animated, Dimensions } from 'react-native'
 import Swiper from 'react-native-swiper'
 
 import ProfileScreen from '../Profile'
@@ -13,6 +13,8 @@ export class Home extends Component {
         this.state = {
             x: 0
         }
+        this.translateX = new Animated.Value(0)
+        this.width = Dimensions.get('window').width
     }
 
     viewStyle() {
@@ -24,8 +26,17 @@ export class Home extends Component {
     }
 
     onScroll = (e) => {
-        this.setState({x: e.nativeEvent.contentOffset.x})
+        const value = - (e.nativeEvent.contentOffset.x - this.width) / 3
+
+        this.element.setNativeProps({
+            style: {
+                transform: [{
+                    translateX: value
+                }]
+            }
+        })
     }
+
 
     render() {
         return (
@@ -47,7 +58,12 @@ export class Home extends Component {
                         <SearchScreen />
                     </View>
                 </Swiper>
-                <Text>{this.state.x}</Text>
+                <Animated.View
+                    ref={(ref) => this.element = ref}
+                    style={{transform: [{translateX: this.translateX}]}}
+                >
+                    <Text>Hello World!</Text>
+                </Animated.View>
             </View>
         )
     }
