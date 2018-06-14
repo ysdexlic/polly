@@ -75,36 +75,37 @@ export class Profile extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button
-                    raised
-                    borderRadius={4}
-                    title={'LOG OUT'}
-                    containerViewStyle={[styles.containerView]}
-                    buttonStyle={[styles.button]}
-                    textStyle={styles.buttonText}
-                    onPress={this.onSignOut}
-                />
+                <View style={styles.innerContainer}>
+                    <Button
+                        raised
+                        borderRadius={4}
+                        title={'LOG OUT'}
+                        containerViewStyle={[styles.containerView]}
+                        buttonStyle={[styles.button]}
+                        textStyle={styles.buttonText}
+                        onPress={this.onSignOut}
+                    />
 
-                <Button
-                    raised
-                    borderRadius={4}
-                    title={'UPLOAD IMAGE'}
-                    containerViewStyle={[styles.containerView]}
-                    buttonStyle={[styles.button]}
-                    textStyle={styles.buttonText}
-                    onPress={this.uploadImage}
-                />
+                    <Button
+                        raised
+                        borderRadius={4}
+                        title={'UPLOAD IMAGE'}
+                        containerViewStyle={[styles.containerView]}
+                        buttonStyle={[styles.button]}
+                        textStyle={styles.buttonText}
+                        onPress={this.uploadImage}
+                    />
 
-                <View style={styles.imageContainer}>
-                    {this.state.images.map((image, i) =>
-                        <Image
-                            key={i}
-                            style={styles.image}
-                            source={{ uri: image }}
-                        />
-                    )}
+                    <View style={styles.imageContainer}>
+                        {this.state.images.map((image, i) =>
+                            <Image
+                                key={i}
+                                style={styles.image}
+                                source={{ uri: image }}
+                            />
+                        )}
+                    </View>
                 </View>
-
             </View>
         )
     }
