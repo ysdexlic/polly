@@ -12,7 +12,9 @@ export class Home extends Component {
     constructor() {
         super()
         this.state = {
-            x: 0
+            opacity1: 1,
+            opacity2: 1,
+            opacity3: 1
         }
         this.width = Dimensions.get('window').width
         this.translateX = new Animated.Value(375)
@@ -28,6 +30,8 @@ export class Home extends Component {
 
     onScroll = (e) => {
         const value = - (e.nativeEvent.contentOffset.x - this.width) / 2.5
+        const currentIndex = e.nativeEvent.contentOffset.x / this.width
+        // console.log(currentIndex)
 
         this.element.setNativeProps({
             style: {
@@ -36,6 +40,12 @@ export class Home extends Component {
                 }]
             }
         })
+
+        // this.setState({
+        //     opacity1: (0 - currentIndex) + 1,
+        //     opacity2: (1 - currentIndex) + 1,
+        //     opacity3: (2 - currentIndex) + 1,
+        // })
     }
 
 
@@ -69,9 +79,9 @@ export class Home extends Component {
                         transform: [{translateX: this.translateX}]
                     }}
                 >
-                    <Icon name="ios-settings-outline" size={30} />
-                    <Icon name="ios-home-outline" size={30} />
-                    <Icon name="ios-search-outline" size={30} />
+                    <Icon name="ios-settings-outline" size={30} style={{color: 'blue', opacity: this.state.opacity1}}/>
+                    <Icon name="ios-home-outline" size={30} style={{color: 'blue', opacity: this.state.opacity2}}/>
+                    <Icon name="ios-search-outline" size={30} style={{color: 'blue', opacity: this.state.opacity3}}/>
                 </Animated.View>
             </View>
         )
