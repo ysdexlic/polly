@@ -28,10 +28,20 @@ export class Home extends Component {
         }
     }
 
+    getOpacity = (index, x) => {
+        // middle point: i * w
+        // lowest point: ((i * w) - w)
+        // highest point: ((i * w) + w)
+
+        const lowest = (index * this.width) - this.width
+        const highest = (index * this.width) + this.width
+        const opacity = - (x - (lowest/this.width)) * (x - (highest/this.width))
+        return opacity + 0.4
+    }
+
     onScroll = (e) => {
         const value = - (e.nativeEvent.contentOffset.x - this.width) / 2.5
         const currentIndex = e.nativeEvent.contentOffset.x / this.width
-        // console.log(currentIndex)
 
         this.element.setNativeProps({
             style: {
@@ -41,11 +51,11 @@ export class Home extends Component {
             }
         })
 
-        // this.setState({
-        //     opacity1: (0 - currentIndex) + 1,
-        //     opacity2: (1 - currentIndex) + 1,
-        //     opacity3: (2 - currentIndex) + 1,
-        // })
+        this.setState({
+            opacity1: this.getOpacity(0, currentIndex),
+            opacity2: this.getOpacity(1, currentIndex),
+            opacity3: this.getOpacity(2, currentIndex),
+        })
     }
 
 
