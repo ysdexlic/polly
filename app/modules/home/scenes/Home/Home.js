@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Animated, Dimensions } from 'react-native'
 import Swiper from 'react-native-swiper'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 import ProfileScreen from '../Profile'
 import SearchScreen from '../Search'
@@ -13,8 +14,8 @@ export class Home extends Component {
         this.state = {
             x: 0
         }
-        this.translateX = new Animated.Value(0)
         this.width = Dimensions.get('window').width
+        this.translateX = new Animated.Value(375)
     }
 
     viewStyle() {
@@ -26,7 +27,7 @@ export class Home extends Component {
     }
 
     onScroll = (e) => {
-        const value = - (e.nativeEvent.contentOffset.x - this.width) / 3
+        const value = - (e.nativeEvent.contentOffset.x - this.width) / 2.5
 
         this.element.setNativeProps({
             style: {
@@ -60,9 +61,17 @@ export class Home extends Component {
                 </Swiper>
                 <Animated.View
                     ref={(ref) => this.element = ref}
-                    style={{transform: [{translateX: this.translateX}]}}
+                    style={{
+                        flexDirection: 'row',
+                        paddingHorizontal: 30,
+                        width: '100%',
+                        justifyContent: 'space-between',
+                        transform: [{translateX: this.translateX}]
+                    }}
                 >
-                    <Text>Hello World!</Text>
+                    <Icon name="ios-settings-outline" size={30} />
+                    <Icon name="ios-home-outline" size={30} />
+                    <Icon name="ios-search-outline" size={30} />
                 </Animated.View>
             </View>
         )

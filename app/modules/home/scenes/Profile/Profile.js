@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { View, StyleSheet, Alert, CameraRoll, ScrollView, Image } from 'react-native'
 import { Button } from 'react-native-elements'
 import { ImagePicker, Permissions } from 'expo'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { actions as authActions } from '../../../auth/index'
 import { actions as homeActions } from '../../index'
