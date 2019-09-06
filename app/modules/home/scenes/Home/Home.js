@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, Animated, Dimensions } from 'react-native'
+import { View, SafeAreaView, Animated, Dimensions } from 'react-native'
 import Swiper from 'react-native-swiper'
-import Icon from 'react-native-vector-icons/Ionicons'
 
 import ProfileScreen from '../Profile'
 import SearchScreen from '../Search'
@@ -42,12 +41,7 @@ export class Home extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Nav
-                    goToIndex={this.goToIndex}
-                    translateX={this.state.translateX}
-                    currentIndex={this.state.currentIndex}
-                />
+            <SafeAreaView style={styles.container}>
                 <Swiper
                     ref={(ref) => this.swiper = ref}
                     loop={false}
@@ -66,7 +60,12 @@ export class Home extends Component {
                         <SearchScreen />
                     </View>
                 </Swiper>
-            </View>
+                <Nav
+                    goToIndex={this.goToIndex}
+                    translateX={this.state.translateX}
+                    currentIndex={this.state.currentIndex}
+                />
+            </SafeAreaView>
         )
     }
 }

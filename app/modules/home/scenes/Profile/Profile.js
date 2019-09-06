@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { View, StyleSheet, Alert, CameraRoll, ScrollView, Image } from 'react-native'
 import { Button } from 'react-native-elements'
-import { ImagePicker, Permissions } from 'expo'
+import * as ImagePicker from 'expo-image-picker'
+import * as Permissions from 'expo-permissions'
+
 
 import { actions as authActions } from '../../../auth/index'
 import { actions as homeActions } from '../../index'

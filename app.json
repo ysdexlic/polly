@@ -1,5 +1,34 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "Polly",
+    "description": "A base app",
+    "slug": "polly",
+    "privacy": "public",
+    "sdkVersion": "33.0.0",
+    "platforms": ["ios", "android"],
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "polly",
+    "primaryColor": "#ff69b4",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "app/assets/*"
+    ],
+    "android": {
+      "package": "com.polly.app",
+      "versionCode": 1,
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "READ_PHONE_STATE"
+      ]
+    },
+    "ios": {
+      "bundleIdentifier": "com.polly.ios.app",
+      "buildNumber": "1",
+      "supportsTablet": false
+    }
   }
 }

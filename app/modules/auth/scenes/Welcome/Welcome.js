@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import { Button, SocialIcon, Divider } from 'react-native-elements'
-import { Video, Facebook } from 'expo'
+import { Video } from 'expo-av'
+import * as Facebook from 'expo-facebook'
 
 import Bee from './Bee.mp4'
 

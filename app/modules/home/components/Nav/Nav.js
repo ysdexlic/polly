@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Animated } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Ionicons as Icon } from '@expo/vector-icons'
 
 import styles from './styles'
 
@@ -38,7 +38,7 @@ export class Nav extends Component {
 
                         return (
                             <Animated.Text key={i} style={{color, opacity, transform: [{scale}]}}>
-                                <Icon name={`ios-${name}-outline`} size={35} onPress={() => goToIndex(i)} />
+                                <Icon name={`ios-${name}`} size={35} onPress={() => goToIndex(i)} />
                             </Animated.Text>
                         )
                     })
